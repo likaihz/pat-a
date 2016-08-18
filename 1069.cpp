@@ -5,13 +5,6 @@
 
 using namespace std;
 
-bool isSame(int x)
-{
-    if(x%10 == x/10%10 && x%10 == x/100%10 && x%10 == x/1000)
-        return true;
-    return false;
-}
-
 int incOrder(int x)
 {
     int d[4] = {x%10, x/10%10, x/100%10, x/1000};
@@ -30,16 +23,11 @@ int main()
     int N;
 
     cin >> N;
-    if(isSame(N)) {
-        printf("%04d - %04d = 0000\n", N, N);
-        return 0;
-    }
     N = incOrder(N);
-    while(N != 6174){
+    while(N != 6174 && N != 0){
         int dif = decOrder(N) - incOrder(N);
         printf("%04d - %04d = %04d\n", decOrder(N), incOrder(N), dif);
         N = dif;
     }
-
     return 0;
 }
